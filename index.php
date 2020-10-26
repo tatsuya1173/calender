@@ -3,7 +3,18 @@
 // 現在の年月を取得
 $year = date('Y');
 $month = date('n');
- 
+
+(int)$before_month = $_GET['zengetu'];
+(int)$next_month = $_GET['zigetu'];
+
+
+    if(isset($before_month)&&$before_month==1){
+       
+    }
+    if(isset($next_month)&&$next_month==1){
+       
+    }
+
 // 月末日を取得
 $last_day = date('j', mktime(0, 0, 0, $month + 1, 0, $year));
  
@@ -74,6 +85,10 @@ for ($i = 1; $i < $last_day + 1; $i++) {
 <body>
     <?php echo $year; ?>年<?php echo $month; ?>月のカレンダー
     <br>
+    <form action="" name="change" method="GET">
+    <button type="submit" name="zengetu" value="1">前月</button>
+    <button type="submit" name="zigetu" value="1">次月</button>
+    </form>
     <br>
     <table>
         <tr>
@@ -92,7 +107,13 @@ for ($i = 1; $i < $last_day + 1; $i++) {
     
             <td>
             <?php $cnt++; ?>
+            <?php if ($cnt==1){?>
+            <span style="color:red;"><?php echo $value['day']; ?></span>
+            <?php }else if($cnt==7){ ?>
+            <span style="color:aqua;"><?php echo $value['day']; ?></span>
+            <?php }else{ ?>
             <?php echo $value['day']; ?>
+            <?php } ?>
             </td>
     
         <?php if ($cnt == 7): ?>
